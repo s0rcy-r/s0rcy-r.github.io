@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- META TAGS -->
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="./images/logo/faveicon.jpg" type="image/x-icon">
-        <!--=== fontaswesome ===-->
-        <link rel="stylesheet" href="./assets/fontaswesome/css/all.min.css" />
-        <link rel="stylesheet" href="./assets/fontaswesome/css/fontawesome.min.css" />
+
+        <!-- ICON AND TITLE-->
+        <link rel="shortcut icon" href="./images/logo/favicon.jpg" type="image/x-icon">
+        <title>Louis Fiori @ ☁</title>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
+        <link rel="stylesheet" href="./assets/fontawesome/css/fontawesome.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Roboto+Slab:wght@300;400;500;600;700&display=swap"
             rel="stylesheet" />
-        <!--=== main css ===-->
-        <link rel="stylesheet" type="text/css" href="./css/vendor/slick.css" />
-        <link rel="stylesheet" href="./css/tailwind.css" />
-        <link rel="stylesheet" href="./css/custom.css" />
-        <title>Home - Bostami Tailwind CSS Personal Portfolio HTML Template </title>
+        <link rel="stylesheet" type="text/css" href="./src/css/slick.css" />
+        <link rel="stylesheet" href="./src/css/tailwind.css" />
+        <link rel="stylesheet" href="./src/css/custom.css" />
         
-        <script src="js/vendor/jquery-3.1.1.min.js"></script>
+        <!-- JS -->
+        <script src="./src/js/jquery-3.1.1.min.js"></script>
         <script>
             // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            if (localStorage.getItem("color-theme") == null)
+            {
+                localStorage["color-theme"] = "dark";
+            }
+
             if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
                 document.documentElement.classList.add("dark");
             } else {
@@ -186,6 +195,11 @@
                                         <i class="fa-brands fa-linkedin-in"></i>
                                     </span>
                                 </a>
+                                <!--<a href="#top">
+                                    <span class="socialbtn text-[#0072b1]">
+                                        <img src="./images/icons/Geoptim Logo-06.svg" />
+                                    </span>
+                                </a>-->
                                 <a href="https://github.com/s0rcy-r" target="_blank" rel="noopener noreferrer">
                                     <span class="socialbtn text-[#0072b1]">
                                         <i class="fa-brands fa-github"></i>
@@ -406,12 +420,12 @@
                                         <h3 class="text-center dark:text-white text-6xl mb-3 font-semibold">Certifications</h3>
                                         <div class="slickOne text-center px-2 pt-8">
                                             <div>
-                                                <a href="./images/AWS Certified Cloud Practitioner certificate.pdf" target="_blank">
+                                                <a href="./docs/AWS Certified Cloud Practitioner certificate.pdf" target="_blank">
                                                     <img class="overflow-hidden brand-img" src="./images/slider/AWS Cloud Practioner.png" alt="certification icon" />
                                                 </a>
                                             </div>
                                             <div>
-                                                <a href="./images/AWS Certified Solutions Architect - Associate certificate.pdf" target="_blank">
+                                                <a href="./docs/AWS Certified Solutions Architect - Associate certificate.pdf" target="_blank">
                                                     <img class="overflow-hidden brand-img" src="./images/slider/AWS Solutions Architect Associate.png" alt="certification icon" />
                                                 </a>                                            
                                             </div>
@@ -419,7 +433,7 @@
                                                 <img class="overflow-hidden brand-img" src="./images/slider/AWS Developer Associate.png" alt="certification icon" />
                                             </div> -->
                                             <div>
-                                                <a href="./images/EF SET Certificate.pdf" target="_blank">
+                                                <a href="./docs/EF SET Certificate.pdf" target="_blank">
                                                     <img class="overflow-hidden brand-img" src="./images/slider/EFSET.png" alt="certification icon" />
                                                 </a>                                            
                                             </div>
@@ -1199,8 +1213,7 @@
                                         <div class="lg:flex gap-x-20">
                                             <!-- personal contact information -->
                                             <div class="w-full lg:w-[40%] xl:w-[30%] space-y-6">
-                                                <div
-                                                    class="flex flex-wrap bg-[#fcf4ff] dark:bg-transparent p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
+                                                <div class="flex flex-wrap bg-[#fcf4ff] dark:bg-[#111111] p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
                                                     <span class="w-8 mt-2">
                                                         <img src="./images/contact/phone-call.png" alt="icon"
                                                             class="text-4xl dark:text-white" />
@@ -1212,8 +1225,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div
-                                                    class="flex flex-wrap dark:bg-transparent bg-[#eefbff] p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
+                                                <div class="flex flex-wrap bg-[#eefbff] dark:bg-[#111111] p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
                                                     <span class="w-8 mt-2">
                                                         <img src="./images/contact/email.png" alt="icon"
                                                             class="text-4xl dark:text-white" />
@@ -1227,8 +1239,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div
-                                                    class="flex flex-wrap dark:bg-transparent bg-[#f2f4ff] p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
+                                                <div class="flex flex-wrap bg-[#f2f4ff] dark:bg-[#111111] p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
                                                     <span class="w-8 mt-2">
                                                         <img src="./images/contact/map.png" alt="icon"
                                                             class="text-4xl dark:text-white" />
@@ -1318,11 +1329,11 @@
         </div>
 
         <!--==== js =====-->
-        <script src="./js/vendor/jquary.min.js"></script>
-        <script src="./js/vendor/slick.js"></script>
-        <script src="js/vendor/jquery.modal.min.js"></script>
+        <script src="./src/js/jquary.min.js"></script>
+        <script src="./src/js/slick.js"></script>
+        <script src="./src/js/jquery.modal.min.js"></script>
         <!-- <script src="js/vendor/isotope.pkgd.min.js"></script> -->
         <!-- main js -->
-        <script src="./js/main.js"></script>
+        <script src="./src/js/main.js"></script>
     </body>
 </html>

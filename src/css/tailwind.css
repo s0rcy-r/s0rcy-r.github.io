@@ -854,7 +854,7 @@ video {
 
 .dark .dark-light-btn {
   --tw-bg-opacity: 1;
-  background-color: rgb(77 77 77 / var(--tw-bg-opacity));
+  background-color: rgb(33 36 37 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
@@ -1975,7 +1975,13 @@ video {
 
 .bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  /*background-color: rgb(255 255 255 / var(--tw-bg-opacity));*/
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .bg-\[\#F3F6F6\] {
@@ -2143,7 +2149,7 @@ video {
 }
 
 .bg-homeBg {
-  background-image: url('../images/background/bg.jpg');
+  background-image: url('../../images/background/bg.png');
 }
 
 .bg-gradient-to-r {
@@ -2151,11 +2157,7 @@ video {
 }
 
 .bg-close-light {
-  background-image: url('../images/icons/closelight.jpg');
-}
-
-.bg-previewBg {
-  background-image: url('../images/background/previewbg.png');
+  background-image: url('../../images/icons/closelight.jpg');
 }
 
 .from-\[\#FA5252\] {
@@ -2988,16 +2990,12 @@ video {
   background-color: rgb(28 28 28 / var(--tw-bg-opacity));
 }
 
-.dark .dark\:bg-homeTwoBg-dark {
-  background-image: url('../images/background/bgtwo.jpg');
-}
-
 .dark .dark\:bg-homeBg-dark {
-  background-image: url('../images/background/bg-dark.jpg');
+  background-image: url('../../images/background/bg-dark.png');
 }
 
 .dark .dark\:bg-close-dark {
-  background-image: url('../images/icons/closeDark.png');
+  background-image: url('../../images/icons/closeDark.png');
 }
 
 .dark .dark\:text-white {
