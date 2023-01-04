@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="./images/logo/faveicon.jpg" type="image/x-icon">
+        <!--=== fontaswesome ===-->
+        <link rel="stylesheet" href="./assets/fontaswesome/css/all.min.css" />
+        <link rel="stylesheet" href="./assets/fontaswesome/css/fontawesome.min.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Roboto+Slab:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet" />
+        <!--=== main css ===-->
+        <link rel="stylesheet" type="text/css" href="./css/vendor/slick.css" />
+        <link rel="stylesheet" href="./css/tailwind.css" />
+        <link rel="stylesheet" href="./css/custom.css" />
+        <title>Home - Bostami Tailwind CSS Personal Portfolio HTML Template </title>
+        
+        <script src="js/vendor/jquery-3.1.1.min.js"></script>
+        <script>
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+
+            $(document).on('click', 'a[href^="#"]', function (event) {
+                event.preventDefault();
+
+                $('html, body').animate({
+                    scrollTop: $($.attr(this, 'href')).offset().top
+                }, 500);
+            });
+        </script>
+    </head>
+
+    <body>
+        <!-- PRELOADER -->
+        <div id="preloader">
+            <div class="loader_line"></div>
+        </div>
+
+        <!-- CONTAINER -->
+        <div class="bg-homeBg min-h-screen dark:bg-homeBg-dark bg-no-repeat bg-center bg-cover bg-fixed md:pb-16 w-full">
+            <div class="z-50">
+                <div class="container">
+                    <!-- HEADER -->
+                    <header class="flex justify-between items-center fixed top-0 left-0 w-full lg:static z-[1111111111]" id="top">
+                        <!-- Mobile toggle buttons -->
+                        <div class="flex justify-between w-full px-4 lg:px-0 bg-[#F3F6F6] bg-transparent">
+                            <div class="flex justify-between w-full items-center space-x-4 lg:my-8 my-5">
+                                <div class="flex items-center">
+                                    <!-- language toggle -->
+                                    <button id="language-toggle" type="button" class="dark-light-btn lg:hidden w-[44px] h-[44px] ml-2" onclick="changeLanguage()">
+                                        <i id="language-toggle-icon" class="fa-solid text-xl fa-language"></i>
+                                        <input type="text" id="current-language" value="en" hidden>
+                                    </button>
+
+                                    <!-- light and dark mode toggle -->
+                                    <button id="theme-toggle-mobile" type="button" class="dark-light-btn lg:hidden w-[44px] h-[44px] ml-2">
+                                        <i id="theme-toggle-dark-icon-mobile" class="fa-solid text-xl fa-moon hidden"></i>
+                                        <i id="theme-toggle-light-icon-mobile" class="fa-solid fa-sun text-xl hidden"></i>
+                                    </button>
+
+                                    <!-- mobile navbar toggle -->
+                                    <button id="menu-toggle" type="button" class="menu-toggle-btn ml-2">
+                                        <i id="menu-toggle-open-icon" class="fa-solid fa-bars text-xl "></i>
+                                        <i id="menu-toggle-close-icon" class="fa-solid fa-xmark text-xl hidden  "></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navbar for large screen -->
+                        <nav class="hidden lg:block fixed z-50" style="left: 31vw; top: -40px;">
+                            <ul class="flex my-12" style="padding: 7px; background: rgba(255, 255, 255, 0.2); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3);">
+                                <li>
+                                    <a class="menu-item-two" href="#top">
+                                        <span class="mr-2 text-base">
+                                            <i class="fa-solid fa-house"></i>
+                                        </span> Home 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item-two" href="#about">
+                                        <span class="mr-2 text-base">
+                                            <i class="fa-regular fa-user"></i>
+                                        </span> About 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item-two" href="#resume">
+                                        <span class="mr-2 text-base">
+                                            <i class="fa-regular fa-file-lines"></i>
+                                        </span> Resume 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item-two" href="#portfolio">
+                                        <span class="mr-2 text-base">
+                                            <i class="fas fa-briefcase"></i>
+                                        </span> Works 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item-two" href="#contact">
+                                        <span class="mr-2 text-base">
+                                            <i class="fa-solid fa-address-book"></i>
+                                        </span> Contact 
+                                    </a>
+                                </li>
+                                <li>
+                                    <!-- light and dark mode toggle -->
+                                    <button id="theme-toggle" type="button" class="dark-light-btn w-[44px] h-[44px] ml-2">
+                                        <i id="theme-toggle-dark-icon" class="fa-solid text-xl fa-moon hidden"></i>
+                                        <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-xl hidden"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <!-- language toggle -->
+                                    <button id="language-toggle" type="button" class="dark-light-btn w-[44px] h-[44px] ml-2" onclick="changeLanguage()">
+                                        <i id="language-toggle-icon" class="fa-solid text-xl fa-language"></i>
+                                        <input type="text" id="current-language" value="en" hidden>
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <!-- Navbar for mobile -->
+                        <nav id="navbar" class="hidden lg:hidden">
+                            <ul class="block rounded-b-[20px] shadow-md absolute left-0 top-20 z-[22222222222222] w-full bg-white dark:bg-[#1d1d1d]">
+                                <li>
+                                    <a class="mobile-menu-items-active" href="#top">
+                                        <span class="mr-2 text-xl">
+                                            <i class="fa-solid fa-house"></i>
+                                        </span> Home 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="mobile-menu-items" href="#about">
+                                        <span class="mr-2 text-xl">
+                                            <i class="fa-regular fa-user"></i>
+                                        </span> About 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="mobile-menu-items" href="#resume">
+                                        <span class="mr-2 text-xl">
+                                            <i class="fa-regular fa-file-lines"></i>
+                                        </span> Resume 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="mobile-menu-items" href="#portfolio">
+                                        <span class="mr-2 text-xl">
+                                            <i class="fas fa-briefcase"></i>
+                                        </span> Works 
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="mobile-menu-items" href="#contact">
+                                        <span class="mr-2 text-xl">
+                                            <i class="fa-solid fa-address-book"></i>
+                                        </span> Contact 
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </header>
+
+                    <!-- MAIN -->
+                    <main>
+                        <!-- Home -->
+                        <div class="flex flex-col items-center h-[100vh] justify-center aos-init aos-animate" data-aos="fade">
+                            <img class="rounded-full w-[250px] h-[250px] 2xl:w-[280px] 2xl:h-[280px]" src="./images/about/avatar.jpg" alt="about avatar" />
+                            <h3 class="mt-6 mb-1 text-5xl font-semibold dark:text-white"> Louis Fiori </h3>
+                            <p class="mb-4 text-[#7B7B7B]">Cloud Engineer & Developer Jr</p>
+                            <!-- social buttons -->
+                            <div class="flex space-x-3">
+                                <a href="https://www.linkedin.com/in/louis-fiori/" target="_blank" rel="noopener noreferrer">
+                                    <span class="socialbtn text-[#0072b1]">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </span>
+                                </a>
+                                <a href="https://github.com/s0rcy-r" target="_blank" rel="noopener noreferrer">
+                                    <span class="socialbtn text-[#0072b1]">
+                                        <i class="fa-brands fa-github"></i>
+                                    </span>
+                                </a>
+                            </div>
+
+                            <!-- download cv button --> 
+                            <a class="download-btn" href="./images/CV.pdf" target="_blank">
+                                <img src="./images/icons/download.png" alt="icon" class="mr-2" />Download CV 
+                            </a>
+
+                            <!-- contact me button -->
+                            <a class="download-btn" href="#contact" target="_blank" style="margin-top: 0.75rem;">
+                                <i class="fa-solid fa-envelope-open-text mr-2"></i>Contact me!
+                            </a>
+                        </div>
+
+                        <!-- About -->
+                        <div class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-20 mb-16" id="about">
+                            <div data-aos="fade" class="aos-init aos-animate">
+                                <div class="py-10">
+                                    <!-- title -->
+                                    <h2 class="after-effect after:left-52 mt-12 lg:mt-0"> About Me </h2>
+                                    <div class="grid grid-cols-12 md:gap-10 pt-4 md:pt-[40px]">
+                                        <!-- personal info -->
+                                        <div class="col-span-12 md:col-span-4 sm:mb-12">
+                                            <h3 class="text-4xl font-medium dark:text-white mb-2.5"> Personal Info </h3>
+                                                <div class="grid grid-cols-1 gap-6">
+                                                    <div class="flex">
+                                                        <span class="text-oriange-lite dark:bg-color-990 shadow-icon mr-2.5 flex items-center justify-center rounded-md text-2xl w-12 text-">
+                                                            <i class="fa-solid fa-location-dot"></i>
+                                                        </span>
+                                                        <div class="space-y-1">
+                                                            <p class="text-xs text-gray-lite dark:text-color-910"> Location
+                                                            </p>
+                                                            <h6 class="font-medium dark:text-white"> France </h6>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex">
+                                                        <span
+                                                            class="text-green dark:bg-color-990 shadow-icon mr-2.5 flex items-center justify-center rounded-md text-2xl w-12 text-">
+                                                            <i class="fa-solid fa-envelope-open-text"></i>
+                                                        </span>
+                                                        <div class="space-y-1">
+                                                            <p class="text-xs text-gray-lite dark:text-color-910"> Email
+                                                            </p>
+                                                            <h6 class="font-medium dark:text-white"> louis.fioripro@gmail.com </h6>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex">
+                                                        <span
+                                                            class="text-color-50 dark:bg-color-990 shadow-icon mr-2.5 flex items-center justify-center rounded-md text-2xl w-12 text-">
+                                                            <i class="fa-solid fa-calendar-days"></i>
+                                                        </span>
+                                                        <div class="space-y-1">
+                                                            <p class="text-xs text-gray-lite dark:text-color-910"> Birthday
+                                                            </p>
+                                                            <h6 class="font-medium dark:text-white"> March 22, 1997 </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                        <!-- who am i  -->
+                                        <div class="col-span-12 md:col-span-8 space-y-2.5">
+                                            <div class="md:mr-12 xl:mr-16">
+                                                <h3 class="text-4xl font-medium dark:text-white mb-2.5"> Who am i? </h3>
+                                                <p class="text-gray-lite dark:text-color-910 leading-7"> Lorem ipsum dolor sit amet, 
+                                                    consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                                <p class="text-gray-lite leading-7 mt-2.5 dark:text-color-910"> Lorem ipsum dolor sit amet, 
+                                                    consectetuer adipiscing elit, sed diam euismod volutpat.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- whai i do contain -->
+                                <div class="pb-12">
+                                    <!-- title -->
+                                    <h2 class="after-effect after:left-52 mt-12 lg:mt-0"> What I do! </h2>
+                                    <div class="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+                                        <div class="about-box dark:bg-transparent bg-[#fcf4ff]">
+                                            <img class="w-10 h-10 object-contain block" src="./images/icons/icon.svg"
+                                                alt="icon" />
+                                            <div class="space-y-2">
+                                                <h3 class="dark:text-white text-2xl font-semibold"> Ui/Ux Design </h3>
+                                                <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor
+                                                    sit amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="about-box dark:bg-transparent bg-[#fefaf0]">
+                                            <img class="w-10 h-10 object-contain block" src="./images/icons/icon1.svg"
+                                                alt="icon" />
+                                            <div class="space-y-2">
+                                                <h3 class="dark:text-white text-2xl font-semibold"> App Development </h3>
+                                                <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor
+                                                    sit amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="about-box dark:bg-transparent bg-[#fcf4ff]">
+                                            <img class="w-10 h-10 object-contain block" src="./images/icons/icon2.svg"
+                                                alt="icon" />
+                                            <div class="space-y-2">
+                                                <h3 class="dark:text-white text-2xl font-semibold"> Photography </h3>
+                                                <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor
+                                                    sit amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="about-box dark:bg-transparent bg-[#fff4f4]">
+                                            <img class="w-10 h-10 object-contain block" src="./images/icons/icon3.svg"
+                                                alt="icon" />
+                                            <div class="space-y-2">
+                                                <h3 class="dark:text-white text-2xl font-semibold"> Photography </h3>
+                                                <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor
+                                                    sit amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="about-box dark:bg-transparent bg-[#fff0f8]">
+                                            <img class="w-10 h-10 object-contain block" src="./images/icons/icon4.svg"
+                                                alt="icon" />
+                                            <div class="space-y-2">
+                                                <h3 class="dark:text-white text-2xl font-semibold"> Managment </h3>
+                                                <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor
+                                                    sit amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="about-box dark:bg-transparent bg-[#f3faff]">
+                                            <img class="w-10 h-10 object-contain block" src="./images/icons/icon5.svg"
+                                                alt="icon" />
+                                            <div class="space-y-2">
+                                                <h3 class="dark:text-white text-2xl font-semibold"> Web Development </h3>
+                                                <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor
+                                                    sit amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resume -->
+                        <div class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-20 mb-16" id="resume">
+                            <div data-aos="fade" class="aos-init aos-animate">
+                                <!-- education and experiences -->
+                                <div class="py-12">
+                                    <h2 class="after-effect after:left-44 mb-[40px] mt-12 lg:mt-0"> Resume </h2>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+                                        <!-- education section -->
+                                        <div>
+                                            <div class="flex items-center space-x-2 mb-4">
+                                                <i class="fa-solid text-6xl text-[#F95054] fa-graduation-cap"></i>
+                                                <h4 class="text-5xl dark:text-white font-medium" data-i18n="education">Education</h4>
+                                            </div>
+                                            <div class="special-box bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2021 & 2022</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="aws-certified">Certified Cloud Practioner and Solutions Architect Associate</h3>
+                                                <p class="dark:text-[#b7b7b7]"><i class="fab fa-aws"></i> Amazon Web Services (AWS)</p>
+                                            </div>
+                                            <div class="special-box bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2020 - 2021</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="bts-cesi">Advanced IT Technician's Diploma</h3>
+                                                <p class="dark:text-[#b7b7b7]">Campus d'enseignement supérieur et de formation professionnelle (CESI)</p>
+                                            </div>
+                                            <div class="special-box bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2017 - 2019</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="bp-pharmacy">Professional Diploma of Pharmaceutical Assistant</h3>
+                                                <p class="dark:text-[#b7b7b7]">CFA de Talant</p>
+                                            </div>
+                                            <div class="special-box bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2015 - 2017</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="bachelor">Bachelor of Science and Technology specializing in Entrepreneurship</h3>
+                                                <p class="dark:text-[#b7b7b7]">Université de Bourgogne</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- experience section -->
+                                        <div>
+                                            <div class="flex items-center space-x-2 mb-4">
+                                                <i class="fa-solid text-6xl text-[#F95054] fa-briefcase"></i>
+                                                <h4 class="text-5xl dark:text-white font-medium" data-i18n="experience">Experience</h4>
+                                            </div>
+                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-[#fff4f4] dark:bg-transparent">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2021 - 2022</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="fullstack-and-cloud">Fullstack Developer Junior & AWS Cloud Engineer</h3>
+                                                <p class="dark:text-[#b7b7b7]">Groupe New York</p>
+                                            </div>
+                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-[#fff4f4] dark:bg-transparent">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2021</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="internship">Intern (SaaS development)</h3>
+                                                <p class="dark:text-[#b7b7b7]">Groupe New York</p>
+                                            </div>
+                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-[#fff4f4] dark:bg-transparent">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2015 - 2019</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="pharmaceutical-assistant">Pharmaceutical Assistant</h3>
+                                                <p class="dark:text-[#b7b7b7]">Pharmacie de la Croix Blanche</p>
+                                            </div>
+                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 rounded-lg bg-[#fff4f4] dark:bg-transparent">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2014 - 2016</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="volunteer">Volunteer writer and web developer</h3>
+                                                <p class="dark:text-[#b7b7b7]">ZoneActu / GamerNetwork</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- certification section -->
+                                <div class="container mb-10 px-2 sm:px-5 md:px-10 lg:px-14">
+                                    <div class="dark:bg-[#111111] max-w-full h-auto py-10 rounded-xl" style="border-width: 1px;">
+                                        <h3 class="text-center dark:text-white text-6xl mb-3 font-semibold">Certifications</h3>
+                                        <div class="slickOne text-center px-2 pt-8">
+                                            <div>
+                                                <a href="./images/AWS Certified Cloud Practitioner certificate.pdf" target="_blank">
+                                                    <img class="overflow-hidden brand-img" src="./images/slider/AWS Cloud Practioner.png" alt="certification icon" />
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="./images/AWS Certified Solutions Architect - Associate certificate.pdf" target="_blank">
+                                                    <img class="overflow-hidden brand-img" src="./images/slider/AWS Solutions Architect Associate.png" alt="certification icon" />
+                                                </a>                                            
+                                            </div>
+                                            <!-- <div>
+                                                <img class="overflow-hidden brand-img" src="./images/slider/AWS Developer Associate.png" alt="certification icon" />
+                                            </div> -->
+                                            <div>
+                                                <a href="./images/EF SET Certificate.pdf" target="_blank">
+                                                    <img class="overflow-hidden brand-img" src="./images/slider/EFSET.png" alt="certification icon" />
+                                                </a>                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <!-- working skills -->
+                                <div class="py-12">
+                                    <div class="grid grid-cols-12 md:grid-cols-12 gap-8">
+                                        <div class="col-span-12">
+                                            <h4 class="text-5xl dark:text-white font-medium mb-6" data-i18n="working-skills">Working Skills</h4>
+                                            <div class="mb-5">
+                                                <div class="flex justify-between mb-1">
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="dev-frontend">Frontend development</span>
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">70%</span>
+                                                </div>
+                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
+                                                    <div class="bg-[#FF6464] h-1 rounded-full" style="width: 70%"></div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="mb-5">
+                                                <div class="flex justify-between mb-1">
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="dev-backend">Backend development</span>
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">75%</span>
+                                                </div>
+                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
+                                                    <div class="bg-[#ca56f2] h-1 rounded-full" style="width: 75%"></div>
+                                                </div>
+                                            </div>                                        
+    
+                                            <div class="mb-5">
+                                                <div class="flex justify-between mb-1">
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="dev-cloud">AWS cloud-based application development</span>
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">80%</span>
+                                                </div>
+                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
+                                                    <div class="bg-[#9272d4] h-1 rounded-full" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="mb-5">
+                                                <div class="flex justify-between mb-1">
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="cloud-conception">Design of cloud architectures</span>
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">85%</span>
+                                                </div>
+                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
+                                                    <div class="bg-[#5185d4] h-1 rounded-full" style="width: 85%"></div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="mb-5">
+                                                <div class="flex justify-between mb-1">
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="cloud-maintenance">Management and maintenance of cloud architectures</span>
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">85%</span>
+                                                </div>
+                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
+                                                    <div class="bg-[#FF6464] h-1 rounded-full" style="width: 85%"></div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="mb-5">
+                                                <div class="flex justify-between mb-1">
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="devops-pipeline">Deployment of DevOps pipeline</span>
+                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">65%</span>
+                                                </div>
+                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
+                                                    <div class="bg-[#ca56f2] h-1 rounded-full" style="width: 65%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-span-6">
+                                            <h4 class="text-5xl dark:text-white font-medium mb-8"> Hard skills </h4>
+                                            <div class="flex gap-y-5 gap-x-2.5 flex-wrap">
+                                                <button class="resume-btn">HTML5 & CSS3</button>
+                                                <button class="resume-btn">JavaScript</button>
+                                                <button class="resume-btn">Python</button>
+                                                <button class="resume-btn">C# & .Net Core</button>
+                                                <button class="resume-btn">Git & GitHub</button>
+                                                <button class="resume-btn">Docker, Docker Compose & Docker Swarm</button>
+                                                <!-- <button class="resume-btn">Kubernetes</button> -->
+                                                <button class="resume-btn">Prometheus & Grafana</button>
+                                                <!-- <button class="resume-btn">Terraform</button> -->
+                                                <button class="resume-btn">Amazon Web Services</button>
+                                                <button class="resume-btn">Google Cloud Platform</button>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-span-6">
+                                            <h4 class="text-5xl dark:text-white font-medium mb-8"> Soft skills </h4>
+                                            <div class="flex gap-y-5 gap-x-2.5 flex-wrap">
+                                                <button class="resume-btn" data-i18n="sf-one">Problems solving</button>
+                                                <button class="resume-btn" data-i18n="sf-two">OOTB Thinking</button>
+                                                <button class="resume-btn" data-i18n="sf-three">Autonomy</button>
+                                                <button class="resume-btn" data-i18n="sf-four">Cooperation</button>
+                                                <button class="resume-btn" data-i18n="sf-five">Collaboration</button>
+                                                <button class="resume-btn" data-i18n="sf-six">Diplomacy</button>
+                                                <button class="resume-btn" data-i18n="sf-seven">Curiosity</button>
+                                                <button class="resume-btn" data-i18n="sf-eight">Learning ability</button>
+                                                <button class="resume-btn" data-i18n="sf-nine">Honesty</button>
+                                                <button class="resume-btn" data-i18n="sf-ten">Strength of proposal</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Portfolio -->
+                        <div class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-[60px] mb-16" id="portfolio">
+                            <div class="py-12">
+                                <h2 class="after-effect after:left-48 mt-12 lg:mt-0">Portfolio</h2>
+                            </div>
+                
+                            <div class="grid grid-cols-3 gap-6 pb-12">
+                                <!-- portfolio items one start -->
+                                <div class="portfolio_list-two-items plugin custom ">
+                                    <div class="rounded-lg bg-[#fff0f0] p-6 dark:bg-transparent dark:border-[2px] border-[#212425]">
+                                        <div class="overflow-hidden rounded-lg">
+                                        <a href="#portfiloOne" rel="modal:open">
+                                            <img
+                                            class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                            src="./images/work_images/small/1.jpg" alt="portfolio image" />
+                                        </a>
+                                        </div>
+                                        <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">UI/UX</span>
+                                        <h2
+                                        class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                        <a href="#portfiloOne" rel="modal:open"> Chul urina </a>
+                                        </h2>
+                                    </div>
+                                </div>
+                
+                                <!-- modal start for item one  -->
+                                <div id="portfiloOne" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    UI/UX Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                                    </div>
+                
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/1.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                
+                                <!-- portfolio items two start -->
+                                <div class="portfolio_list-two-items dev branding ">
+                                    <div class="rounded-lg bg-[#fff3fc] dark:bg-transparent p-6 dark:border-[2px] border-[#212425]">
+                                        <div class="overflow-hidden rounded-lg">
+                                        <a href="#portfiloTwo" rel="modal:open">
+                                            <img
+                                            class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                            src="./images/work_images/small/2.jpg" alt="portfolio image" />
+                                        </a>
+                                        </div>
+                                        <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">Logo</span>
+                                        <h2
+                                        class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                        <a href="#portfiloTwo" rel="modal:open">Chul urina</a>
+                                        </h2>
+                                    </div>
+                                </div>
+                
+                                <!-- modal start for item two  -->
+                                <div id="portfiloTwo" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    Logo Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/2.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                
+                                <!-- portfolio items three start -->
+                                <div class="portfolio_list-two-items plugin ">
+                                <div class="rounded-lg bg-[#fff3fc] dark:bg-transparent p-6 dark:border-[2px] border-[#212425]">
+                                    <div class="overflow-hidden rounded-lg">
+                                    <a href="#portfiloThree" rel="modal:open">
+                                        <img
+                                        class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                        src="./images/work_images/small/3.jpg" alt="portfolio image" />
+                                    </a>
+                                    </div>
+                                    <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">UI/UX</span>
+                                    <h2
+                                    class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                    <a href="#portfiloThree" rel="modal:open">
+                                        T-Shirt Design
+                                    </a>
+                                    </h2>
+                                </div>
+                                </div>
+                
+                                <!-- modal start for item three start -->
+                                <div id="portfiloThree" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    T-Shirt Design Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/3.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                
+                                <!-- portfolio items four start -->
+                                <div class="portfolio_list-two-items dev custom ">
+                                <div class="rounded-lg p-6 bg-[#e9faff] dark:bg-transparent dark:border-[2px] border-[#212425]">
+                                    <div class="overflow-hidden rounded-lg">
+                                    <a href="#portfiloFour" rel="modal:open">
+                                        <img
+                                        class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                        src="./images/work_images/small/4.jpg" alt="portfolio image" />
+                                    </a>
+                                    </div>
+                                    <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">UI/UX</span>
+                                    <h2
+                                    class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                    <a href="#portfiloFour" rel="modal:open">Packaging Box
+                                    </a>
+                                    </h2>
+                                </div>
+                                </div>
+                
+                                <!-- modal start for item one start -->
+                                <div id="portfiloFour" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    Packaging Box Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                                    </div>
+                
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/4.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                
+                                <!-- modal start for item five start -->
+                                <div class="portfolio_list-two-items branding ">
+                                <div class="rounded-lg bg-[#fffae9] dark:bg-transparent p-6 dark:border-[2px] border-[#212425]">
+                                    <div class="overflow-hidden rounded-lg">
+                                    <a href="#portfiloFive" rel="modal:open">
+                                        <img
+                                        class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                        src="./images/work_images/small/5.jpg" alt="portfolio image" />
+                                    </a>
+                                    </div>
+                                    <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">Web Design</span>
+                                    <h2
+                                    class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                    <a href="#portfiloFive" rel="modal:open"> Aura Dione</a>
+                                    </h2>
+                                </div>
+                                </div>
+                
+                                <!-- modal start for item five start -->
+                                <div id="portfiloFive" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    Aura Dione Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/5.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                
+                                <!-- portfolio items Six start -->
+                                <div class="portfolio_list-two-items branding ">
+                                <div class="rounded-lg bg-[#f4f4ff] dark:bg-transparent p-6 dark:border-[2px] border-[#212425]">
+                                    <div class="overflow-hidden rounded-lg">
+                                    <a href="#portfiloSix" rel="modal:open">
+                                        <img
+                                        class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                        src="./images/work_images/small/6.jpg" alt="portfolio image" />
+                                    </a>
+                                    </div>
+                                    <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">Video</span>
+                                    <h2
+                                    class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                    <a href="#portfiloSix" rel="modal:open">
+                                        Modern Bag Design
+                                    </a>
+                                    </h2>
+                                </div>
+                                </div>
+                
+                                <!-- modal start for item six start -->
+                                <div id="portfiloSix" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    Modern Bag Design Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                
+                                    </div>
+                
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/6.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                
+                                <!-- modal start for item Seven start -->
+                                <div class="portfolio_list-two-items plugin ">
+                                <div class="rounded-lg bg-[#f4f4ff] dark:bg-transparent p-6 dark:border-[2px] border-[#212425]">
+                                    <div class="overflow-hidden rounded-lg">
+                                    <a href="#portfiloSeven" rel="modal:open">
+                                        <img
+                                        class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                        src="./images/work_images/small/7.jpg" alt="portfolio image" />
+                                    </a>
+                                    </div>
+                                    <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">Video</span>
+                                    <h2
+                                    class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                    <a href="#portfiloSeven" rel="modal:open"> Chul urina </a>
+                                    </h2>
+                                </div>
+                                </div>
+                
+                                <!-- modal start for item Seven start -->
+                                <div id="portfiloSeven" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    UI/UX Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/7.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                
+                                <!-- portfolio items Eight start -->
+                                <div class="portfolio_list-two-items dev branding ">
+                                <div class="rounded-lg bg-[#f4f4ff] dark:bg-transparent p-6 dark:border-[2px] border-[#212425]">
+                                    <div class="overflow-hidden rounded-lg">
+                                    <a href="#portfiloEight" rel="modal:open">
+                                        <img
+                                        class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                        src="./images/work_images/small/8.jpg" alt="portfolio image" />
+                                    </a>
+                                    </div>
+                                    <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">Video</span>
+                                    <h2
+                                    class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                    <a href="#portfiloEight" rel="modal:open"> Chul urina </a>
+                                    </h2>
+                                </div>
+                                </div>
+                
+                                <!-- modal start for item Eight start -->
+                                <div id="portfiloEight" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    UI/UX Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/8.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                
+                
+                                <!-- portfolio items Nine start -->
+                                <div class="portfolio_list-two-items plugin custom ">
+                                <div class="rounded-lg bg-[#fff0f8] dark:bg-transparent p-6 dark:border-[2px] border-[#212425]">
+                                    <div class="overflow-hidden rounded-lg">
+                                    <a href="#portfiloNine" rel="modal:open">
+                                        <img
+                                        class="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+                                        src="./images/work_images/small/9.jpg" alt="portfolio image" />
+                                    </a>
+                                    </div>
+                                    <span class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]">Web Design</span>
+                                    <h2
+                                    class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
+                                    <a href="#portfiloNine" rel="modal:open"> Aura Dione </a>
+                                    </h2>
+                                </div>
+                                </div>
+                
+                                <!-- modal start for item Nine start -->
+                                <div id="portfiloNine" class="modal-container modal">
+                                <div
+                                    class="overflow-y-scroll scroll-hide-1700  max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+                                    <h2 class="text-[#ef4060] dark:hover:text-[#FA5252] text-4xl text-center font-bold">
+                                    Aura Dione Project
+                                    </h2>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl"></i>
+                                        Project :&nbsp;
+                                        <span class="font-medium"> Website</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-code text-lg mr-2 hidden sm:block"></i>
+                                        Langages :&nbsp;
+                                        <span class="font-medium">Photoshop, Figma</span>
+                                        </p>
+                                    </div>
+                
+                                    <div class="space-y-2">
+                                        <p class="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
+                                        <i class="fa-regular fa-user text-lg mr-2 hidden sm:block"></i>
+                                        Client :&nbsp; <span class="font-medium">Envato</span>
+                                        </p>
+                                        <p class="dark:text-white flex items-center text-[15px] sm:text-lg">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block"></i>
+                                        Preview :&nbsp;
+                                        <span class="font-medium transition-all duration-300 ease-in-out hover:text-[#ef4060]">
+                                            <a href="https://www.envato.com" target="_blank" rel="noopener noreferrer">www.envato.com</a>
+                                        </span>
+                                        </p>
+                                    </div>
+                                    </div>
+                
+                                    <p class="dark:text-white text-2line font-normal text-[15px] sm:text-sm">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Mollitia placeat magnam possimus iusto blanditiis pariatur
+                                    labore explicabo quo repellat hic dolorum numquam
+                                    asperiores, voluptatum fugiat reiciendis aspernatur, non,
+                                    odio aperiam voluptas ex tempora vitae. Dolor, consequatur
+                                    quidem! Quas magni distinctio dolorum dolore natus, vel
+                                    numquam accusamus. Nostrum eligendi recusandae qui tempore
+                                    deserunt!
+                                    </p>
+                                    <div class="pr-3">
+                                    <img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
+                                        src="./images/work_images/9.jpg" alt="portfolio image" />
+                                    </div>
+                                </div>
+                                <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="lg:rounded-2xl bg-white dark:bg-[#111111]" id="contact">
+                            <div data-aos="fade" class="aos-init aos-animate">
+                                <div class="container px-4 sm:px-5 md:px-10 lg:px-20">
+                                    <div class="py-12">
+                                        <h2 class="after-effect after:left-40 mb-[40px] mt-12 lg:mt-0">Contact</h2>
+                                        <div class="lg:flex gap-x-20">
+                                            <!-- personal contact information -->
+                                            <div class="w-full lg:w-[40%] xl:w-[30%] space-y-6">
+                                                <div
+                                                    class="flex flex-wrap bg-[#fcf4ff] dark:bg-transparent p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
+                                                    <span class="w-8 mt-2">
+                                                        <img src="./images/contact/phone-call.png" alt="icon"
+                                                            class="text-4xl dark:text-white" />
+                                                    </span>
+                                                    <div class="space-y-2">
+                                                        <p class="text-xl font-semibold dark:text-white"> Phone : </p>
+                                                        <p class="text-gray-lite text-lg dark:text-[#A6A6A6]"> +452 666 386 </p>
+                                                        <p class="text-gray-lite text-lg dark:text-[#A6A6A6]"> +452 666 386 </p>
+                                                    </div>
+                                                </div>
+
+                                                <div
+                                                    class="flex flex-wrap dark:bg-transparent bg-[#eefbff] p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
+                                                    <span class="w-8 mt-2">
+                                                        <img src="./images/contact/email.png" alt="icon"
+                                                            class="text-4xl dark:text-white" />
+                                                    </span>
+                                                    <div class="space-y-2">
+                                                        <p class="text-xl font-semibold dark:text-white"> Email : </p>
+                                                        <p class="text-gray-lite text-lg dark:text-[#A6A6A6]"> support@gmail.com
+                                                        </p>
+                                                        <p class="text-gray-lite text-lg dark:text-[#A6A6A6]"> example@gmail.com
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div
+                                                    class="flex flex-wrap dark:bg-transparent bg-[#f2f4ff] p-[30px] dark:border-[#212425] dark:border-2 gap-2 rounded-xl">
+                                                    <span class="w-8 mt-2">
+                                                        <img src="./images/contact/map.png" alt="icon"
+                                                            class="text-4xl dark:text-white" />
+                                                    </span>
+                                                    <div class="space-y-2">
+                                                        <p class="text-xl font-semibold dark:text-white"> Address : </p>
+                                                        <p class="text-gray-lite text-lg dark:text-[#A6A6A6]"> Maount View, Oval
+                                                        </p>
+                                                        <p class="text-gray-lite text-lg dark:text-[#A6A6A6]"> Road, New York,
+                                                            USA </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="w-full mt-8 lg:mt-0 lg:w-[60%] xl:w-[70%]">
+                                                <div data-aos="fade"
+                                                    class="dark:border-[#212425] dark:border-2 mb-16 md:p-[48px] p-4 bg-color-810 rounded-xl dark:bg-[#111111] mb-[30px] md:mb-[60px] aos-init aos-animate">
+                                                    <h3 class="text-4xl">
+                                                        <span class="text-gray-lite dark:text-[#A6A6A6]">I'm always open to
+                                                            discussing product</span>
+                                                        <br />
+                                                        <span class="font-semibold dark:text-white">design work or
+                                                            partnerships.</span>
+                                                    </h3>
+
+                                                    <form id="myForm" action="https://formspree.io/f/xoqrgaab" method="POST">
+                                                        <!-- name input -->
+                                                        <div class="relative z-0 w-full mt-[40px] mb-8 group">
+                                                            <input type="text" id="name" name="name"
+                                                                class="block autofill:bg-transparent py-2.5 px-0 w-full text-sm text-gray-lite bg-transparent border-0 border-b-[2px] border-[#B5B5B5] appearance-none dark:text-white dark:border-[#333333] dark:focus:border-[#FF6464] focus:outline-none focus:ring-0 focus:border-[#FF6464] peer"
+                                                                placeholder=" " required="" />
+                                                            <label for="name"
+                                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-color-910 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#FF6464] peer-focus:dark:text-[#FF6464] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">Name
+                                                                *</label>
+                                                        </div>
+
+                                                        <!-- email input  -->
+                                                        <div class="relative z-0 w-full mb-8 group">
+                                                            <input type="email" name="user_email"
+                                                                class="block autofill:text-red-900 needed py-2.5 px-0 w-full text-sm text-gray-lite bg-transparent border-0 border-b-[2px] border-[#B5B5B5] appearance-none dark:text-white dark:border-[#333333] dark:focus:border-[#FF6464] focus:outline-none focus:ring-0 focus:border-[#5185D4] peer"
+                                                                placeholder=" " id="user_email" required="" />
+                                                            <label for="user_email"
+                                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-color-910 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#5185D4] peer-focus:dark:text-[#FF6464] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">Email
+                                                                *</label>
+                                                        </div>
+
+                                                        <!-- massage input -->
+                                                        <div class="relative z-0 w-full mb-8 group">
+                                                            <input type="text" name="message"
+                                                                class="block autofill:bg-yellow-200 py-2.5 px-0 w-full text-sm text-gray-lite bg-transparent border-0 border-b-[2px] border-[#B5B5B5] appearance-none dark:text-white dark:border-[#333333] dark:focus:border-[#FF6464] focus:outline-none focus:ring-0 focus:border-[#CA56F2] peer"
+                                                                placeholder=" " id="message" required="" />
+                                                            <label for="message"
+                                                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-color-910 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#CA56F2] peer-focus:dark:text-[#FF6464] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">Message
+                                                                *</label>
+                                                        </div>
+
+                                                        <div
+                                                            class="transition-all duration-300 ease-in-out inline-block hover:bg-gradient-to-r from-[#FA5252] to-[#DD2476] rounded-lg mt-3">
+                                                            <!-- submit buttons -->
+                                                            <input type="submit"
+                                                                class="transition ease-in duration-200 font-semibold cursor-pointer border-color-910 hover:border-transparent px-6 py-2 rounded-lg border-[2px] hover:text-white dark:text-white"
+                                                                value="Submit" />
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    
+                    <!-- FOOTER -->
+                    <footer class="overflow-hidden rounded-b-2xl" style="background: transparent">
+                        <p class="text-center py-6 text-gray-lite dark:text-color-910"> 
+                                Made with ❤
+                                by <a class="hover:text-[#FA5252] duration-300 transition"
+                                href="https://themeforest.net/user/ib-themes" target="_blank"
+                                rel="noopener noreferrer"> ib-themes</a> and 
+                                <a class="hover:text-[#FA5252] duration-300 transition"
+                                href="#top">Louis Fiori</a>
+                            </p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <!--==== js =====-->
+        <script src="./js/vendor/jquary.min.js"></script>
+        <script src="./js/vendor/slick.js"></script>
+        <script src="js/vendor/jquery.modal.min.js"></script>
+        <!-- <script src="js/vendor/isotope.pkgd.min.js"></script> -->
+        <!-- main js -->
+        <script src="./js/main.js"></script>
+    </body>
+</html>
