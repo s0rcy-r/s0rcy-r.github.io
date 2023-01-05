@@ -24,8 +24,12 @@
         
         <!-- JS -->
         <script src="./src/js/jquery-3.1.1.min.js"></script>
+        <script src="./src/js/i18next.min.js" type="text/javascript"></script>
+        <script src="./src/js/jquery-i18next.min.js" type="text/javascript"></script>
+        <script src="./src/js/i18nextBrowserLanguageDetector.min.js" type="text/javascript"></script>
+        <script src="./src/js/i18nextHttpBackend.min.js" type="text/javascript"></script>
         <script>
-            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            // Color theme
             if (localStorage.getItem("color-theme") == null)
             {
                 localStorage["color-theme"] = "dark";
@@ -37,12 +41,69 @@
                 document.documentElement.classList.remove("dark");
             }
 
+            // Smooth scrolling
             $(document).on('click', 'a[href^="#"]', function (event) {
                 event.preventDefault();
 
                 $('html, body').animate({
                     scrollTop: $($.attr(this, 'href')).offset().top
                 }, 500);
+            });
+
+            // Add active when scrolling
+            $(window).scroll(function() {
+                var windscroll = $(window).scrollTop();
+                if (windscroll >= 100) {
+                    $('section').each(function(i) {
+                        if ($(this).position().top <= windscroll + 100) {
+                            $('nav li a.menu-item-two-active').addClass('menu-item-two');
+                            $('nav li a.menu-item-two-active').removeClass('menu-item-two-active');
+                            $('nav li a').eq(i).removeClass('menu-item-two');
+                            $('nav li a').eq(i).addClass('menu-item-two-active');
+                        }
+                    });
+                } else {
+                    $('nav li a.menu-item-two-active').addClass('menu-item-two');
+                    $('nav li a.menu-item-two-active').removeClass('menu-item-two-active');
+                    $('nav li a:first').removeClass('menu-item-two');
+                    $('nav li a:first').addClass('menu-item-two-active');
+                }
+            }).scroll();
+
+            // Langage selection
+            function changeLanguage() {
+                i18next.changeLanguage($("#current-language").val(), () => {
+                    rerender();
+                    if ($("#current-language").val() == "en")
+                    {
+                        $("#current-language").val("fr");
+                    }
+                    else 
+                    {
+                        $("#current-language").val("en");
+                    }
+                });
+            }
+
+            const rerender = () => {
+                $('body').localize();
+            }
+
+            $(function () {
+            i18next
+            .use(i18nextHttpBackend)
+            .use(i18nextBrowserLanguageDetector)
+            .init({
+                debug: true,
+                fallbackLng: 'fr',
+                backend: {
+                    loadPath: './locales/{{lng}}/{{ns}}.json'
+                }
+                }, (err, t) => {
+                    if (err) return console.error(err);
+                    jqueryI18next.init(i18next, $, { useOptionsAttr: true });
+                    rerender();
+                });
             });
         </script>
     </head>
@@ -63,19 +124,19 @@
                         <div class="flex justify-between w-full px-4 lg:px-0 bg-[#F3F6F6] bg-transparent">
                             <div class="flex justify-between w-full items-center space-x-4 lg:my-8 my-5">
                                 <div class="flex items-center">
-                                    <!-- language toggle -->
+                                    <!-- Language toggle -->
                                     <button id="language-toggle" type="button" class="dark-light-btn lg:hidden w-[44px] h-[44px] ml-2" onclick="changeLanguage()">
                                         <i id="language-toggle-icon" class="fa-solid text-xl fa-language"></i>
                                         <input type="text" id="current-language" value="en" hidden>
                                     </button>
 
-                                    <!-- light and dark mode toggle -->
+                                    <!-- Light and dark mode toggle -->
                                     <button id="theme-toggle-mobile" type="button" class="dark-light-btn lg:hidden w-[44px] h-[44px] ml-2">
                                         <i id="theme-toggle-dark-icon-mobile" class="fa-solid text-xl fa-moon hidden"></i>
                                         <i id="theme-toggle-light-icon-mobile" class="fa-solid fa-sun text-xl hidden"></i>
                                     </button>
 
-                                    <!-- mobile navbar toggle -->
+                                    <!-- Mobile navbar toggle -->
                                     <button id="menu-toggle" type="button" class="menu-toggle-btn ml-2">
                                         <i id="menu-toggle-open-icon" class="fa-solid fa-bars text-xl "></i>
                                         <i id="menu-toggle-close-icon" class="fa-solid fa-xmark text-xl hidden  "></i>
@@ -88,31 +149,35 @@
                         <nav class="hidden lg:block fixed z-50" style="left: 31vw; top: -40px;">
                             <ul class="flex my-12" style="padding: 7px; background: rgba(255, 255, 255, 0.2); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3);">
                                 <li>
-                                    <a class="menu-item-two" href="#top">
+                                    <a class="menu-item-two-active" href="#top">
                                         <span class="mr-2 text-base">
                                             <i class="fa-solid fa-house"></i>
-                                        </span> Home 
+                                        </span>
+                                        <span data-i18n="home">Home</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="menu-item-two" href="#about">
                                         <span class="mr-2 text-base">
                                             <i class="fa-regular fa-user"></i>
-                                        </span> About 
+                                        </span>
+                                        <span data-i18n="about">About</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="menu-item-two" href="#resume">
                                         <span class="mr-2 text-base">
                                             <i class="fa-regular fa-file-lines"></i>
-                                        </span> Resume 
+                                        </span>
+                                        <span data-i18n="resume">Resume</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="menu-item-two" href="#portfolio">
                                         <span class="mr-2 text-base">
                                             <i class="fas fa-briefcase"></i>
-                                        </span> Works 
+                                        </span>
+                                        <span data-i18n="portfolio">Portfolio</span> 
                                     </a>
                                 </li>
                                 <li>
@@ -146,28 +211,32 @@
                                     <a class="mobile-menu-items-active" href="#top">
                                         <span class="mr-2 text-xl">
                                             <i class="fa-solid fa-house"></i>
-                                        </span> Home 
+                                        </span>
+                                        <span data-i18n="home">Home</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="mobile-menu-items" href="#about">
                                         <span class="mr-2 text-xl">
                                             <i class="fa-regular fa-user"></i>
-                                        </span> About 
+                                        </span>
+                                        <span data-i18n="about">About</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="mobile-menu-items" href="#resume">
                                         <span class="mr-2 text-xl">
                                             <i class="fa-regular fa-file-lines"></i>
-                                        </span> Resume 
+                                        </span>
+                                        <span data-i18n="resume">Resume</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="mobile-menu-items" href="#portfolio">
                                         <span class="mr-2 text-xl">
                                             <i class="fas fa-briefcase"></i>
-                                        </span> Works 
+                                        </span>
+                                        <span data-i18n="portfolio">Portfolio</span> 
                                     </a>
                                 </li>
                                 <li>
@@ -183,43 +252,40 @@
 
                     <!-- MAIN -->
                     <main>
-                        <!-- Home -->
-                        <div class="flex flex-col items-center h-[100vh] justify-center aos-init aos-animate" data-aos="fade">
-                            <img class="rounded-full w-[250px] h-[250px] 2xl:w-[280px] 2xl:h-[280px]" src="./images/about/avatar.jpg" alt="about avatar" />
-                            <h3 class="mt-6 mb-1 text-5xl font-semibold dark:text-white"> Louis Fiori </h3>
-                            <p class="mb-4 text-[#7B7B7B]">Cloud Engineer & Developer Jr</p>
-                            <!-- social buttons -->
+                        <!-- HOME -->
+                        <section class="flex flex-col items-center h-[100vh] justify-center aos-init aos-animate" data-aos="fade">
+                            <img class="rounded-full w-[250px] h-[250px] 2xl:w-[280px] 2xl:h-[280px]" src="./images/about/avatar.jpg" alt="profile picture" />
+                            <h3 class="mt-6 mb-1 font-semibold dark:text-white" style="font-size: 3rem;"> Louis Fiori </h3>
+                            <h4 class="mb-4 dark:text-white" data-i18n="job-name">Cloud Engineer & Developer Jr</h4>
+                            <!-- Social buttons -->
                             <div class="flex space-x-3">
                                 <a href="https://www.linkedin.com/in/louis-fiori/" target="_blank" rel="noopener noreferrer">
                                     <span class="socialbtn text-[#0072b1]">
                                         <i class="fa-brands fa-linkedin-in"></i>
                                     </span>
                                 </a>
-                                <!--<a href="#top">
-                                    <span class="socialbtn text-[#0072b1]">
-                                        <img src="./images/icons/Geoptim Logo-06.svg" />
-                                    </span>
-                                </a>-->
                                 <a href="https://github.com/s0rcy-r" target="_blank" rel="noopener noreferrer">
-                                    <span class="socialbtn text-[#0072b1]">
+                                    <span class="socialbtn">
                                         <i class="fa-brands fa-github"></i>
                                     </span>
                                 </a>
                             </div>
 
-                            <!-- download cv button --> 
-                            <a class="download-btn" href="./images/CV.pdf" target="_blank">
-                                <img src="./images/icons/download.png" alt="icon" class="mr-2" />Download CV 
+                            <!-- Download cv button --> 
+                            <a class="download-btn" href="./docs/CV.pdf" target="_blank">
+                                <img src="./images/icons/download.png" alt="icon" class="mr-2" />
+                                <span data-i18n="download-cv">Download CV</span>
                             </a>
 
-                            <!-- contact me button -->
+                            <!-- Contact me button -->
                             <a class="download-btn" href="#contact" target="_blank" style="margin-top: 0.75rem;">
-                                <i class="fa-solid fa-envelope-open-text mr-2"></i>Contact me!
+                                <i class="fa-solid fa-envelope-open-text mr-2"></i>
+                                <span data-i18n="contact-me">Contact me!</span>
                             </a>
-                        </div>
+                        </section>
 
                         <!-- About -->
-                        <div class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-20 mb-16" id="about">
+                        <section class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-20 mb-16" id="about">
                             <div data-aos="fade" class="aos-init aos-animate">
                                 <div class="py-10">
                                     <!-- title -->
@@ -347,205 +413,167 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
 
-                        <!-- Resume -->
-                        <div class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-20 mb-16" id="resume">
+                        <!-- RESUME -->
+                        <section class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-20 mb-16" id="resume">
                             <div data-aos="fade" class="aos-init aos-animate">
-                                <!-- education and experiences -->
+                                <!-- Education & Experiences -->
                                 <div class="py-12">
-                                    <h2 class="after-effect after:left-44 mb-[40px] mt-12 lg:mt-0"> Resume </h2>
+                                    <h2 class="after-effect after:left-44 mb-[40px] mt-12 lg:mt-0" data-i18n="resume"> Resume </h2>
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
-                                        <!-- education section -->
+                                        <!-- Education -->
                                         <div>
                                             <div class="flex items-center space-x-2 mb-4">
-                                                <i class="fa-solid text-6xl text-[#F95054] fa-graduation-cap"></i>
+                                                <i class="fa-solid text-6xl text-[#F95054] fa-school-flag"></i>
                                                 <h4 class="text-5xl dark:text-white font-medium" data-i18n="education">Education</h4>
                                             </div>
-                                            <div class="special-box bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
-                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2021 & 2022</span>
-                                                <h3 class="text-xl dark:text-white" data-i18n="aws-certified">Certified Cloud Practioner and Solutions Architect Associate</h3>
+                                            <div class="special-box bg-white dark:bg-[#111111] py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">10/2022</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="aws-certified-saa">Certified AWS Solutions Architect Associate</h3>
                                                 <p class="dark:text-[#b7b7b7]"><i class="fab fa-aws"></i> Amazon Web Services (AWS)</p>
                                             </div>
-                                            <div class="special-box bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
-                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2020 - 2021</span>
+                                            <div class="special-box bg-white dark:bg-[#111111] py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">10/2021</span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="aws-certified-cp">Certified AWS Cloud Practitioner</h3>
+                                                <p class="dark:text-[#b7b7b7]"><i class="fab fa-aws"></i> Amazon Web Services (AWS)</p>
+                                            </div>
+                                            <div class="special-box bg-white dark:bg-[#111111] py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">02/2021 > 07/2021</span>
                                                 <h3 class="text-xl dark:text-white" data-i18n="bts-cesi">Advanced IT Technician's Diploma</h3>
-                                                <p class="dark:text-[#b7b7b7]">Campus d'enseignement supérieur et de formation professionnelle (CESI)</p>
+                                                <p class="dark:text-[#b7b7b7]">
+                                                    <img src="./images/icons/CESI icon.png" width="30" style="display: inline-block; margin-right: 2px;"/>
+                                                    Campus d'enseignement supérieur et de formation professionnelle
+                                                </p>
                                             </div>
-                                            <div class="special-box bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
-                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2017 - 2019</span>
+                                            <div class="special-box bg-white dark:bg-[#111111] py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">09/2017 > 06/2019</span>
                                                 <h3 class="text-xl dark:text-white" data-i18n="bp-pharmacy">Professional Diploma of Pharmaceutical Assistant</h3>
-                                                <p class="dark:text-[#b7b7b7]">CFA de Talant</p>
+                                                <p class="dark:text-[#b7b7b7]">
+                                                    <img src="./images/icons/Logo-CFA-talant.png" width="30" style="display: inline-block; margin-right: 2px;"/>
+                                                    CFA de Talant</p>
                                             </div>
-                                            <div class="special-box bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 rounded-lg">
-                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2015 - 2017</span>
+                                            <div class="special-box bg-white dark:bg-[#111111] py-4 pl-5 pr-3 space-y-2 rounded-lg">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">09/2015 > 06/2017</span>
                                                 <h3 class="text-xl dark:text-white" data-i18n="bachelor">Bachelor of Science and Technology specializing in Entrepreneurship</h3>
-                                                <p class="dark:text-[#b7b7b7]">Université de Bourgogne</p>
+                                                <p class="dark:text-[#b7b7b7]">
+                                                    <img src="./images/icons/Université_de_Bourgogne_Logo.svg" width="30" style="display: inline-block; margin-right: 2px;"/>
+                                                    Université de Bourgogne
+                                                </p>
                                             </div>
                                         </div>
 
-                                        <!-- experience section -->
+                                        <!-- Experiences -->
                                         <div>
                                             <div class="flex items-center space-x-2 mb-4">
                                                 <i class="fa-solid text-6xl text-[#F95054] fa-briefcase"></i>
                                                 <h4 class="text-5xl dark:text-white font-medium" data-i18n="experience">Experience</h4>
                                             </div>
-                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-[#fff4f4] dark:bg-transparent">
-                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2021 - 2022</span>
+                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-white dark:bg-[#111111]">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">08/2021 > 12/2022  @  <u>Groupe New York</u></span>
                                                 <h3 class="text-xl dark:text-white" data-i18n="fullstack-and-cloud">Fullstack Developer Junior & AWS Cloud Engineer</h3>
-                                                <p class="dark:text-[#b7b7b7]">Groupe New York</p>
+                                                <p class="dark:text-[#b7b7b7]" data-i18n="fullstack-and-cloud-text">Development of a business activity management web application called Broadway Access (with a library of encrypted documents, summaries, graphs and activity reports, dynamic customer map, etc.). Implementation of an application deployment pipeline directly on AWS and management of the AWS account.</p>
                                             </div>
-                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-[#fff4f4] dark:bg-transparent">
-                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2021</span>
-                                                <h3 class="text-xl dark:text-white" data-i18n="internship">Intern (SaaS development)</h3>
-                                                <p class="dark:text-[#b7b7b7]">Groupe New York</p>
+                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-white dark:bg-[#111111]">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">05/2021 > 07/2021  @  <u>Groupe New York</u></span>
+                                                <h3 class="text-xl dark:text-white" data-i18n="internship">Intern</h3>
+                                                <p class="dark:text-[#b7b7b7]" data-i18n="internship-text">Finalization of the development of the company intranet. Proposal for the development of a web application allowing the management of the company's activity based on the processes written internally and on the technologies offered by the AWS cloud. Creation of a Proof of Concept for presentation to the management committee.</p>
                                             </div>
-                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-[#fff4f4] dark:bg-transparent">
-                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2015 - 2019</span>
+                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-white dark:bg-[#111111]">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">08/2017 > 07/2020  @  <u>Pharmacie de la Croix Blanche</u></span>
                                                 <h3 class="text-xl dark:text-white" data-i18n="pharmaceutical-assistant">Pharmaceutical Assistant</h3>
-                                                <p class="dark:text-[#b7b7b7]">Pharmacie de la Croix Blanche</p>
+                                                <p class="dark:text-[#b7b7b7]" data-i18n="pharmaceutical-assistant-text">Management of the herbalism part and the manufacture of food supplements. Participation in the manufacture of officinal, magistral and cosmetic preparations. Maintenance of computer systems and web development.</p>
                                             </div>
-                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 rounded-lg bg-[#fff4f4] dark:bg-transparent">
-                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">2014 - 2016</span>
+                                            <div class="special-box py-4 pl-5 pr-3 space-y-2 rounded-lg bg-white dark:bg-[#111111]">
+                                                <span class="text-tiny text-gray-lite dark:text-[#b7b7b7]">07/2014 > 09/2016  @  <u>ZoneActu / GamerNetwork</u></span>
                                                 <h3 class="text-xl dark:text-white" data-i18n="volunteer">Volunteer writer and web developer</h3>
-                                                <p class="dark:text-[#b7b7b7]">ZoneActu / GamerNetwork</p>
+                                                <p class="dark:text-[#b7b7b7]" data-i18n="volunteer-text">Writing articles on the field of video games via Wordpress and SEO management. Web development on the site (themes and simple web page).</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- certification section -->
-                                <div class="container mb-10 px-2 sm:px-5 md:px-10 lg:px-14">
-                                    <div class="dark:bg-[#111111] max-w-full h-auto py-10 rounded-xl" style="border-width: 1px;">
-                                        <h3 class="text-center dark:text-white text-6xl mb-3 font-semibold">Certifications</h3>
+                                <!-- Certifications -->
+                                <div class="mb-10">
+                                    <div class="bg-white dark:bg-[#111111] max-w-full h-auto py-10 rounded-xl certification-box" style="border-width: 1px;">
+                                        <h3 class="text-center dark:text-white text-6xl mb-3 font-semibold">
+                                            <i class="fa-solid text-6xl text-[#F95054] fa-graduation-cap"></i>
+                                            Certifications
+                                        </h3>
                                         <div class="slickOne text-center px-2 pt-8">
                                             <div>
                                                 <a href="./docs/AWS Certified Cloud Practitioner certificate.pdf" target="_blank">
-                                                    <img class="overflow-hidden brand-img" src="./images/slider/AWS Cloud Practioner.png" alt="certification icon" />
+                                                    <img class="overflow-hidden brand-img" src="./images/slider/AWS Cloud Practioner.png" alt="aws cp certification icon" />
                                                 </a>
                                             </div>
                                             <div>
                                                 <a href="./docs/AWS Certified Solutions Architect - Associate certificate.pdf" target="_blank">
-                                                    <img class="overflow-hidden brand-img" src="./images/slider/AWS Solutions Architect Associate.png" alt="certification icon" />
+                                                    <img class="overflow-hidden brand-img" src="./images/slider/AWS Solutions Architect Associate.png" alt="aws saa certification icon" />
                                                 </a>                                            
                                             </div>
-                                            <!-- <div>
-                                                <img class="overflow-hidden brand-img" src="./images/slider/AWS Developer Associate.png" alt="certification icon" />
-                                            </div> -->
                                             <div>
                                                 <a href="./docs/EF SET Certificate.pdf" target="_blank">
-                                                    <img class="overflow-hidden brand-img" src="./images/slider/EFSET.png" alt="certification icon" />
+                                                    <img class="overflow-hidden brand-img" src="./images/slider/EFSET.png" alt="efset certification icon" />
                                                 </a>                                            
                                             </div>
                                         </div>
                                     </div>
                                 </div>
     
-                                <!-- working skills -->
+                                <!-- Hard/Soft skills -->
                                 <div class="py-12">
                                     <div class="grid grid-cols-12 md:grid-cols-12 gap-8">
-                                        <div class="col-span-12">
-                                            <h4 class="text-5xl dark:text-white font-medium mb-6" data-i18n="working-skills">Working Skills</h4>
-                                            <div class="mb-5">
-                                                <div class="flex justify-between mb-1">
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="dev-frontend">Frontend development</span>
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">70%</span>
-                                                </div>
-                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
-                                                    <div class="bg-[#FF6464] h-1 rounded-full" style="width: 70%"></div>
-                                                </div>
-                                            </div>
-    
-                                            <div class="mb-5">
-                                                <div class="flex justify-between mb-1">
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="dev-backend">Backend development</span>
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">75%</span>
-                                                </div>
-                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
-                                                    <div class="bg-[#ca56f2] h-1 rounded-full" style="width: 75%"></div>
-                                                </div>
-                                            </div>                                        
-    
-                                            <div class="mb-5">
-                                                <div class="flex justify-between mb-1">
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="dev-cloud">AWS cloud-based application development</span>
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">80%</span>
-                                                </div>
-                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
-                                                    <div class="bg-[#9272d4] h-1 rounded-full" style="width: 80%"></div>
-                                                </div>
-                                            </div>
-    
-                                            <div class="mb-5">
-                                                <div class="flex justify-between mb-1">
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="cloud-conception">Design of cloud architectures</span>
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">85%</span>
-                                                </div>
-                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
-                                                    <div class="bg-[#5185d4] h-1 rounded-full" style="width: 85%"></div>
-                                                </div>
-                                            </div>
-    
-                                            <div class="mb-5">
-                                                <div class="flex justify-between mb-1">
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="cloud-maintenance">Management and maintenance of cloud architectures</span>
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">85%</span>
-                                                </div>
-                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
-                                                    <div class="bg-[#FF6464] h-1 rounded-full" style="width: 85%"></div>
-                                                </div>
-                                            </div>
-    
-                                            <div class="mb-5">
-                                                <div class="flex justify-between mb-1">
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6]" data-i18n="devops-pipeline">Deployment of DevOps pipeline</span>
-                                                    <span class=" font-semibold text-[#526377] dark:text-[#A6A6A6">65%</span>
-                                                </div>
-                                                <div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
-                                                    <div class="bg-[#ca56f2] h-1 rounded-full" style="width: 65%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-    
+                                        <!-- Hard skills -->
                                         <div class="col-span-6">
-                                            <h4 class="text-5xl dark:text-white font-medium mb-8"> Hard skills </h4>
+                                            <h4 class="text-5xl dark:text-white font-medium mb-8"> 
+                                                <i class="fa-solid text-6xl text-[#F95054] fa-code"></i>
+                                                Hard skills 
+                                            </h4>
                                             <div class="flex gap-y-5 gap-x-2.5 flex-wrap">
-                                                <button class="resume-btn">HTML5 & CSS3</button>
-                                                <button class="resume-btn">JavaScript</button>
-                                                <button class="resume-btn">Python</button>
-                                                <button class="resume-btn">C# & .Net Core</button>
-                                                <button class="resume-btn">Git & GitHub</button>
-                                                <button class="resume-btn">Docker, Docker Compose & Docker Swarm</button>
-                                                <!-- <button class="resume-btn">Kubernetes</button> -->
+                                                <button class="resume-btn"><img src="./images/icons/uk.png" width="20" style="display: inline-block;"/> English</button>
+                                                <button class="resume-btn"><img src="./images/icons/fr.png" width="20" style="display: inline-block;"/> Français</button>
+                                                <button class="resume-btn"><i class="fab fa-aws"></i> Amazon Web Services</button>
+                                                <button class="resume-btn"><i class="fab fa-html5"></i><i class="fab fa-css3-alt"></i> HTML5 & CSS3</button>
+                                                <button class="resume-btn"><i class="fab fa-js"></i> JavaScript</button>
+                                                <button class="resume-btn"><i class="fab fa-python"></i> Python <i>(+ Django)</i></button>
+                                                <button class="resume-btn">C# <i>(+ .Net Core)</i></button>
+                                                <button class="resume-btn"><i class="fab fa-git"></i> Git & GitHub</button>
                                                 <button class="resume-btn">Prometheus & Grafana</button>
+                                                <button class="resume-btn"><i class="fab fa-docker"></i> Produits Docker</button>
+                                                <!-- <button class="resume-btn">Kubernetes</button> -->
                                                 <!-- <button class="resume-btn">Terraform</button> -->
-                                                <button class="resume-btn">Amazon Web Services</button>
-                                                <button class="resume-btn">Google Cloud Platform</button>
+                                                <button class="resume-btn"><i class="fab fa-wordpress"></i> Wordpress</button>
+                                                <button class="resume-btn">Shell, Bash</button>
+                                                <button class="resume-btn"><i class="fab fa-ubuntu"></i> Linux</button>
+                                                <button class="resume-btn"><i class="fab fa-windows"></i> Windows</button>
+                                                <button class="resume-btn">SQL <i>(PostgreSQL)</i></button>
                                             </div>
                                         </div>
     
+                                        <!-- Soft skills -->
                                         <div class="col-span-6">
-                                            <h4 class="text-5xl dark:text-white font-medium mb-8"> Soft skills </h4>
+                                            <h4 class="text-5xl dark:text-white font-medium mb-8"> 
+                                                <i class="fa-solid text-6xl text-[#F95054] fa-handshake"></i>
+                                                Soft skills 
+                                            </h4>
                                             <div class="flex gap-y-5 gap-x-2.5 flex-wrap">
-                                                <button class="resume-btn" data-i18n="sf-one">Problems solving</button>
-                                                <button class="resume-btn" data-i18n="sf-two">OOTB Thinking</button>
-                                                <button class="resume-btn" data-i18n="sf-three">Autonomy</button>
-                                                <button class="resume-btn" data-i18n="sf-four">Cooperation</button>
-                                                <button class="resume-btn" data-i18n="sf-five">Collaboration</button>
-                                                <button class="resume-btn" data-i18n="sf-six">Diplomacy</button>
-                                                <button class="resume-btn" data-i18n="sf-seven">Curiosity</button>
-                                                <button class="resume-btn" data-i18n="sf-eight">Learning ability</button>
-                                                <button class="resume-btn" data-i18n="sf-nine">Honesty</button>
-                                                <button class="resume-btn" data-i18n="sf-ten">Strength of proposal</button>
+                                                <button class="resume-btn" data-i18n="sf-one">Autonomy</button>
+                                                <button class="resume-btn" data-i18n="sf-two">Sense of organization</button>
+                                                <button class="resume-btn" data-i18n="sf-three">Strength of proposal</button>
+                                                <button class="resume-btn" data-i18n="sf-four">Curiosity</button>
+                                                <button class="resume-btn" data-i18n="sf-seven">Learning ability</button>
+                                                <button class="resume-btn" data-i18n="sf-eight">Honesty</button>
+                                                <button class="resume-btn" data-i18n="sf-nine">Teamwork</button>
+                                                <button class="resume-btn" data-i18n="sf-ten">Problems solving</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
                         
                         <!-- Portfolio -->
-                        <div class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-[60px] mb-16" id="portfolio">
+                        <section class="lg:rounded-2xl bg-white dark:bg-[#111111] px-4 sm:px-5 md:px-10 lg:px-[60px] mb-16" id="portfolio">
                             <div class="py-12">
                                 <h2 class="after-effect after:left-48 mt-12 lg:mt-0">Portfolio</h2>
                             </div>
@@ -1202,10 +1230,10 @@
                                 <a href="#close-modal" rel="modal:close" class="close bg-close-light dark:bg-close-dark">Close</a>
                                 </div>
                             </div>
-                        </div>
+                        </section>
 
                         <!-- Contact -->
-                        <div class="lg:rounded-2xl bg-white dark:bg-[#111111]" id="contact">
+                        <section class="lg:rounded-2xl bg-white dark:bg-[#111111]" id="contact">
                             <div data-aos="fade" class="aos-init aos-animate">
                                 <div class="container px-4 sm:px-5 md:px-10 lg:px-20">
                                     <div class="py-12">
@@ -1310,7 +1338,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
                     </main>
                     
                     <!-- FOOTER -->
@@ -1328,12 +1356,10 @@
             </div>
         </div>
 
-        <!--==== js =====-->
+        <!-- JS -->
         <script src="./src/js/jquary.min.js"></script>
         <script src="./src/js/slick.js"></script>
         <script src="./src/js/jquery.modal.min.js"></script>
-        <!-- <script src="js/vendor/isotope.pkgd.min.js"></script> -->
-        <!-- main js -->
         <script src="./src/js/main.js"></script>
     </body>
 </html>

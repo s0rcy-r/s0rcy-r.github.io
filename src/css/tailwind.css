@@ -604,8 +604,27 @@ video {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.dark .special-box:hover {
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
 .dark .about-box {
   border-width: 2px;
+}
+
+.dark .certification-box {
+  --tw-border-opacity: 1;
+  border-color: rgb(33 36 37 / var(--tw-border-opacity));
+  border-width: 2px;
+  FONT-WEIGHT: 200
+}
+
+.certification-box:hover {
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.dark .certification-box:hover {
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .after-effect {
@@ -673,12 +692,12 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.dark .resume-btn {
+/* .dark .resume-btn {
   --tw-bg-opacity: 1;
   background-color: rgb(28 28 28 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
+} */
 
 .socialbtn {
   display: flex;
@@ -686,6 +705,7 @@ video {
   width: 2.5rem;
   align-items: center;
   justify-content: center;
+  border-width: 2px;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(243 246 246 / var(--tw-bg-opacity));
@@ -707,8 +727,7 @@ video {
 }
 
 .dark .socialbtn {
-  --tw-bg-opacity: 1;
-  background-color: rgb(33 36 37 / var(--tw-bg-opacity));
+  border-width: 0px;
 }
 
 .fillter-btn {
@@ -852,12 +871,12 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.dark .dark-light-btn {
+/* .dark .dark-light-btn {
   --tw-bg-opacity: 1;
   background-color: rgb(33 36 37 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
+} */
 
 .dark .dark-light-btn:hover {
   --tw-bg-opacity: 1;
@@ -1299,12 +1318,12 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.dark .menu-item-two {
+/* .dark .menu-item-two {
   --tw-bg-opacity: 1;
   background-color: rgb(33 36 37 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(166 166 166 / var(--tw-text-opacity));
-}
+} */
 
 .dark .menu-item-two:hover {
   --tw-text-opacity: 1;
