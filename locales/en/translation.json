@@ -6,20 +6,27 @@
     "about" : "About",
     "resume" : "Resume",
     "portfolio" : "Portfolio",
-
-
-
+    "personal-info" : "Personal info",
     "location" : "Location",
     "birthday" : "Birthday",
     "birthday-date" : "March 22, 1997",
     "about-me" : "Who am I?",
     "tagline" : "🧐 Self-taught and passionate, I turned my passion into a profession.",
-    "first-line" : "👨‍🎓 Pharmaceutical assistant until 2019 and after a professional assessment, I decided to change paths. I accumulate nearly 1500 hours of lessons on various platforms (while working on the side), I start a diploma with the CESI and ... I dived into this new world!",
-    "second-line" : "👨‍💻 During my last experience at the New York Group, I had the dual role of junior fullstack developer and cloud architect/engineer. In addition to improving my technical stack (notably by being certified by AWS), I was able to develop my strength of proposal and my autonomy in remote.",
-    "third-line" : "💪 With these experiences, I now support companies of all sizes for the implementation, development and maintenance of their cloud-based projects. I also help with any transition and migration to a cloud or hybrid environment, for application operational maintenance, setting up automation, etc.",
-    
-
-
+    "first-line" : "👨‍🎓 After starting my career as a pharmacian assistant, I decided to change paths in order to live from my passion. Greatly self-taught, I accumulate more than 1500 hours of lessons on various platforms while working on the side, I start training with the CESI and finally... I dive into this new world!",
+    "second-line" : "💪 With my professional and personal experiences, I now support companies of all sizes for the implementation, development and maintenance of their cloud-based projects. I also help with any transition and migration to a cloud or hybrid environment, for application operational maintenance, setting up automation, etc.",
+    "what-i-do" : "What I do!",
+    "fullstack-wd" : "Fullstack web development",
+    "fullstack-wd-text" : "Frontend and backend web development and in particular creation of web applications related to the cloud (AWS mainly).",
+    "aws-architecture" : "AWS architecture",
+    "aws-architecture-text" : "Design, implementation, management and maintenance of AWS architectures or AWS native cloud applications.",
+    "servers-admin" : "Servers administration",
+    "servers-admin-text" : "Administration, management and maintenance of Windows or Linux servers.",
+    "computer-support" : "Computer support",
+    "computer-support-text" : "First and second level computer maintenance and assistance.",
+    "training" : "Training",
+    "training-text" : "Staff training and animation of educational workshops to learn how to use new technologies or new tools.",
+    "documentation": "Documentation",
+    "documentation-text" : "Design of information supports, technical documents or Proof of Concept.",  
     "education" : "Education",
     "aws-certified-saa" : "Certified AWS Solutions Architect Associate",
     "aws-certified-cp" : "Certified AWS Cloud Practitioner",

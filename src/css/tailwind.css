@@ -588,6 +588,10 @@ video {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.dark .about-box:hover {
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
 .special-box {
     border-width: 1px;
     FONT-WEIGHT: 200
@@ -2601,12 +2605,12 @@ video {
   color: rgb(68 86 108 / var(--tw-text-opacity));
 }
 
-.text-oriange {
+.text-orange {
   --tw-text-opacity: 1;
   color: rgb(233 59 129 / var(--tw-text-opacity));
 }
 
-.text-oriange-lite {
+.text-orange-lite {
   --tw-text-opacity: 1;
   color: rgb(253 117 144 / var(--tw-text-opacity));
 }
@@ -2725,24 +2729,9 @@ video {
   transition-timing-function: linear;
 }
 
-.after\:left-52::after {
-  content: var(--tw-content);
-  left: 13rem;
-}
-
 .after\:left-32::after {
   content: var(--tw-content);
   left: 8rem;
-}
-
-.after\:left-60::after {
-  content: var(--tw-content);
-  left: 15rem;
-}
-
-.after\:top-\[76px\]::after {
-  content: var(--tw-content);
-  top: 76px;
 }
 
 .after\:left-40::after {
@@ -2750,15 +2739,36 @@ video {
   left: 10rem;
 }
 
+.after\:left-44::after {
+  content: var(--tw-content);
+  left: 11rem;
+}
+
 .after\:left-48::after {
   content: var(--tw-content);
   left: 12rem;
 }
 
-.after\:left-44::after {
+.after\:left-52::after {
   content: var(--tw-content);
-  left: 11rem;
+  left: 13rem;
 }
+
+.after\:left-60::after {
+  content: var(--tw-content);
+  left: 15rem;
+}
+
+.after\:left-64::after {
+  content: var(--tw-content);
+  left: 18rem;
+}
+
+.after\:top-\[76px\]::after {
+  content: var(--tw-content);
+  top: 76px;
+}
+
 
 .autofill\:bg-transparent:-webkit-autofill {
   background-color: transparent;
