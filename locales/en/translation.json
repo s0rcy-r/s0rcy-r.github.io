@@ -1,11 +1,10 @@
 {
     "job-name": "Cloud Developer and Engineer",
-    "download-cv" : "Download CV",
+    "download-cv" : "Download my resume!",
     "contact-me" : "Contact me!",
     "home" : "Home",
     "about" : "About",
     "resume" : "Resume",
-    "portfolio" : "Portfolio",
     "personal-info" : "Personal info",
     "location" : "Location",
     "birthday" : "Birthday",
@@ -50,17 +49,12 @@
     "sf-six" : "Honesty",
     "sf-seven" : "Teamwork",
     "sf-eight" : "Problems solving",
-
-
-
-    "cloudypie" : "☁️ CloudyPie is my very first project! The main idea was to make a homemade file storage, accessible from a web application in local and that can be deployed on a Raspberry Pi. I was inspired by Google Drive, ... etc; but I wanted to create something secure, while giving users full control over their data. For the security aspect, I developed my own file encryption library: EncrypThor. This library uses the AES protocol, it was quite messy, but it had the merit of working effectively and efficiently.",
-    "pys3tower" : "PyS3Tower 🏗️ (like the Pisa Tower, it's a French joke) is a Python library that can sync your local files to an S3 bucket. With PyS3Tower you can easily sync your local files to an S3 bucket and also sync your S3 bucket to your local files. This script works like xcopy on Windows, but it is more powerful and flexible. This library was used at Groupe New York where we can't deploy AWS DataSync or a Storage Gateway. So, I made this temporary solution using Python and the SDK.",
-    "mapyto" : "MaPyto 🌍 is an open-source Django project that can optimize Google Maps Routes (without the limitation of 10 addresses per route). This project is my first real big and serious project and I even wanted to launch it as a real service! (you can find a first idea of an AWS architecture in the photos) The main backend algorithm is based on the Dijkstra algorithm. This algorithm finds the shortest route between several points on a map.",
-    "broadway-access" : "Broadway Access is a SaaS (software-as-a-service) developed for the New York Group (a group specializing in points-of-sale image). It consist of a web portal where the employees can manage their clients based on pre-established processes, while communicating with the systems already in place (SAGE 100 and an intranet). The purpose of this application is to facilitate communication between departments to reduce errors, to reduce the number of tools to be used by centralizing them in one, to have a customer follow-up (CRM) and a personalized BI tool to the group activity. All while offering an opening to various customers (so that they have access to BI tools, documents, etc.). For the record, I proposed the development of this application to the management committee during an internship. After validation, I had a year to develop and deploy this application on AWS. I had to fend for myself for all the technical part (the business part being provided by various people of the group). This application has been used for several customers such as Stellantis, Abeille Assurances, Intermarché ... etc.",
+    "contact-line-one" : "I am always open to a discussion around your needs in order",
+    "contact-line-two" : "to provide you with the skills that will allow you to move forward.",
     "please-required" : "Please complete all required fields",
-    "contact-line" : "I am always open to a discussion around your needs in order to provide you with the skills that will allow you to move forward.",
     "name" : "Your name *",
     "email" : "Your email address *",
     "message" : "Your message *",
+    "error-message" : "You've forgot this field!",
     "submit" : "Submit"
 }

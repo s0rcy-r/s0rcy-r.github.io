@@ -1,11 +1,10 @@
 {
     "job-name": "Développeur et Ingénieur Cloud",
-    "download-cv" : "Téléchargez mon CV",
+    "download-cv" : "Téléchargez mon CV !",
     "contact-me" : "Contactez-moi !",
     "home" : "Accueil",
     "about" : "A propos",
     "resume" : "CV",
-    "portfolio" : "Portfolio",
     "personal-info" : "Infos personnelles",
     "location" : "Localisation",
     "birthday" : "Date de naissance",
@@ -50,17 +49,12 @@
     "sf-six" : "Honnêteté",
     "sf-seven" : "Travail d'équipe",
     "sf-eight" : "Résolution de problèmes",
-
-
-
-    "cloudypie" : "☁️ CloudyPie est mon tout premier projet ! L'idée principale était de réaliser un stockage de fichiers maison, accessible depuis une application web en local et pouvant être déployé sur un Raspberry Pi. Je me suis inspiré de Google Drive, ... etc; mais je voulais créer quelque chose de sécurisé, tout en donnant aux utilisateurs un contrôle total sur leurs données. Pour l'aspect sécurité, j'ai développé ma propre bibliothèque de chiffrement de fichiers : EncrypThor. Cette librairie utilise le protocole AES, c'était assez brouillon, mais ça avait le mérite de fonctionner efficacement.",
-    "pys3tower" : "PyS3Tower 🏗️ (comme la tour de Pise, oui, c'est une blague un peu nulle) est une bibliothèque Python qui peut synchroniser vos fichiers locaux avec un bucket S3. Avec PyS3Tower, vous pouvez facilement synchroniser vos fichiers locaux avec un compartiment S3 et également synchroniser votre compartiment S3 avec vos fichiers locaux. Ce script fonctionne comme xcopy sous Windows, mais il est plus puissant et flexible. Cette bibliothèque a été crée pour le Groupe New York où nous ne pouvions pas déployer AWS DataSync ou une Storage Gateway. J'ai donc créé cette solution temporaire en utilisant Python et le SDK.",
-    "mapyto" : "MaPyto 🌍 est un projet Django open-source qui permet d'optimiser Google Maps Routes (sans la limitation de 10 adresses par itinéraire). Ce projet est mon premier \"vrai, gros et sérieux\" projet et j'ai même eu envie de le lancer en tant que vrai service ! (vous pouvez trouver une première idée d'architecture AWS dans les photos) L'algorithme principal du backend est basé sur l'algorithme de Dijkstra. Cet algorithme permet de trouver le chemin le plus court entre plusieurs points sur une carte.",
-    "broadway-access" : "Broadway Access est un SaaS (software-as-a-service) développé pour le Groupe New York (groupe spécialisé dans le déploiement d'image de points de vente). Il consiste en un portail web où les employés peuvent gérer leurs clients selon des processus préétablis, tout en communiquant avec les systèmes déjà en place (SAGE 100 et un intranet). Le but de cette application est de faciliter la communication entre les services pour réduire les erreurs, de réduire le nombre d'outils à utiliser en les centralisant en un seul, d'avoir un suivi client (CRM) et un outil de BI personnalisé à l'activité du groupe. Tout en offrant une ouverture aux différents clients (afin qu'ils aient accès aux outils BI, aux documents, etc.). Pour mémoire, j'ai proposé le développement de cette application au comité de direction lors d'un stage. Après validation, j'ai eu un an pour développer et déployer cette application sur AWS. J'ai dû me débrouiller seul pour toute la partie technique (la partie commerciale étant assurée par différentes personnes du groupe). Cette application a été utilisée pour plusieurs clients tels que Stellantis, Abeille Assurances, Intermarché...etc.",
+    "contact-line-one" : "Je suis toujours ouvert à une discussion autour de vos besoins afin",
+    "contact-line-two" : "de vous apporter les compétences qui vous permettront d'avancer.",
     "please-required" : "S'il vous plaît, veuillez remplir tous les champs requis",
-    "contact-line" : "Je suis toujours ouvert à une discussion autour de vos besoins afin de vous apporter les compétences qui vous permettront d'avancer.",
     "name" : "Votre nom *",
     "email" : "Votre adresse email *",
     "message" : "Votre message *",
+    "error-message" : "Vous avez oublié ce champ !",
     "submit" : "Envoyer"
 }
