@@ -1,8 +1,6 @@
-# s0rcy-r.github.io
-~~- Faire le portfolio~~
-~~- Faire le formulaire de contact~~
-~~- Ajouter une animation du background (via SVG)~~
-~~- Travailler la version mobile~~
-~~- Ajouter un service d'analytique (Google Analytics)~~
-- Optimiser la page (minification du JS et CSS, amélioration des images ... etc)
-- Écrire le Readme.md
+# My portfolio : __s0rcy-r.github.io__ 🚀
+
+## Social :baby_chick:
+
+![GitHub followers](https://img.shields.io/github/followers/s0rcy-r?label=Follow%20me&style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/s0rcy-r/s0rcy-r.github.io??style=social)
