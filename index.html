@@ -81,10 +81,14 @@
                     if ($("#current-language").val() == "en")
                     {
                         $("#current-language").val("fr");
+                        document.getElementById("mobile-language-icon").src = "./images/icons/fr.png";
+                        document.getElementById("language-icon").src = "./images/icons/fr.png";
                     }
                     else 
                     {
                         $("#current-language").val("en");
+                        document.getElementById("mobile-language-icon").src = "./images/icons/uk.png";
+                        document.getElementById("language-icon").src = "./images/icons/uk.png";
                     }
                 });
             }
@@ -139,7 +143,7 @@
                                 <div class="flex items-center">
                                     <!-- Language toggle -->
                                     <button id="language-toggle-mobile" type="button" class="dark-light-btn lg:hidden w-[44px] h-[44px] ml-2" onclick="changeLanguage()">
-                                        <i id="language-toggle-icon-mobile" class="fa-solid text-xl fa-language"></i>
+                                        <img src="./images/icons/uk.png" id="mobile-language-icon" loading="lazy" width="20" height="20" style="display: inline-block;" alt="uk flag icon" />
                                         <input type="text" id="current-language" value="en" hidden>
                                     </button>
 
@@ -202,7 +206,7 @@
                                 <li>
                                     <!-- language toggle -->
                                     <button id="language-toggle" type="button" class="dark-light-btn w-[44px] h-[44px] ml-2" onclick="changeLanguage()">
-                                        <i id="language-toggle-icon" class="fa-solid text-xl fa-language"></i>
+                                        <img src="./images/icons/uk.png" id="language-icon" loading="lazy" width="20" height="20" style="display: inline-block;" alt="uk flag icon" />
                                         <input type="text" id="current-language" value="en" hidden>
                                     </button>
                                 </li>
